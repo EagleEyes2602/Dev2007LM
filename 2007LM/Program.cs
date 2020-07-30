@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using Vehicle.TwoWheel;
 
 namespace _2007LM
 {
@@ -11,6 +12,24 @@ namespace _2007LM
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Car.Car car = new Car.Car() { Code = "MS650", Brand = "Merc", Name = "Merc S650 Maybach", Price = 900000 };
+            car.Run();
+            car.Stop();
+
+            Vehicle.Car car1 = new Vehicle.Car();
+
+            MotoBike motoBike = new MotoBike();
+            motoBike.Run();
+            motoBike.Stop();
+            Console.ReadKey();
+        }
+
+        #region Session 05
+
+        public void Session05()
+        {
+
             #region MyRegion
             //int resA = Sum(1, 1, 1);
             //int resB = Sum(1, 1);
@@ -83,7 +102,6 @@ namespace _2007LM
             dicProduct.Remove(1);
 
             #endregion
-            Console.ReadKey();
         }
 
         public static void print(List<Product> lst)
@@ -124,5 +142,7 @@ namespace _2007LM
             int res = a + b;
             return res;
         }
+
+        #endregion
     }
 }
