@@ -1,0 +1,7 @@
+D:\Students\2007LM\2007LM\bin\Debug\2007LM.exe.config
+D:\Students\2007LM\2007LM\bin\Debug\2007LM.exe
+D:\Students\2007LM\2007LM\bin\Debug\2007LM.pdb
+D:\Students\2007LM\2007LM\obj\Debug\2007LM.csprojAssemblyReference.cache
+D:\Students\2007LM\2007LM\obj\Debug\2007LM.csproj.CoreCompileInputs.cache
+D:\Students\2007LM\2007LM\obj\Debug\2007LM.exe
+D:\Students\2007LM\2007LM\obj\Debug\2007LM.pdb
