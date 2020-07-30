@@ -13,16 +13,93 @@ namespace _2007LM
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+
+            #region NameSpace
             Car.Car car = new Car.Car() { Code = "MS650", Brand = "Merc", Name = "Merc S650 Maybach", Price = 900000 };
             car.Run();
             car.Stop();
 
             Vehicle.Car car1 = new Vehicle.Car();
-
-            MotoBike motoBike = new MotoBike();
+            MotoBike motoBike = new MotoBike("", "", "", 1, "");
             motoBike.Run();
             motoBike.Stop();
+            #endregion
+
+            #region Exception
+
+            try
+            {
+                // Chứa đoạn code muốn bắt lỗi / có khả năng xảy ra lỗi
+                int a = 10, b = 1;
+                int c = a / b;
+                //car = null;
+                car.Run();
+                throw new Exception("Lỗi rồi hihi");
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                // Khi lỗi chương trình sẽ chạy vào đây
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Khi lỗi chương trình sẽ chạy vào đây
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // Lúc nào cũng chạy vào đây
+            }
+
+            try
+            {
+                int[] arr = new int[] { 1, 3, 2 };
+                Console.WriteLine(arr[3]);
+            }
+            catch (LoiRoi ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            #endregion
+
+            #region Delegate
+            IntIntToInt iiToInt = new IntIntToInt(Sum);
+            Console.WriteLine(iiToInt(1, 2));
+
+            iiToInt = new IntIntToInt(Minus);
+            Console.WriteLine(iiToInt(1, 2));
+
+            int c = IiTi(true)(1,2);
+            #endregion
             Console.ReadKey();
+        }
+
+        public delegate int IntIntToInt(int a, int b);
+
+        public static IntIntToInt IiTi(bool flag)
+        {
+            if (flag)
+            {
+                return Sum;
+            }
+            else
+            {
+                return Minus;
+            }
+        }
+
+        public class LoiRoi : SystemException
+        {
+            public LoiRoi(string msg)
+                : base(msg)
+            {
+                Console.WriteLine("Tự giác mà sửa đi");
+            }
         }
 
         #region Session 05
@@ -141,6 +218,11 @@ namespace _2007LM
         {
             int res = a + b;
             return res;
+        }
+
+        public static int Minus(int a, int b)
+        {
+            return a - b;
         }
 
         #endregion

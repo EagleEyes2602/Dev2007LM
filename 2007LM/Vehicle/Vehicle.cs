@@ -8,11 +8,19 @@ namespace Vehicle
 {
     class Car
     {
-        public string Code { get; set; }
-        public string Brand { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        protected string Code { get; set; }
+        protected string Brand { get; set; }
+        protected string Name { get; set; }
+        protected decimal Price { get; set; }
 
+        public Car() { }
+        public Car(string code, string brand, string name, decimal price)
+        {
+            this.Code = code;
+            this.Brand = brand;
+            this.Name = name;
+            this.Price = price;
+        }
         public void Run()
         {
             Console.WriteLine(this.Code + " đang chạy");
@@ -30,6 +38,11 @@ namespace Vehicle
         {
             public string Supplier { get; set; }
             public MotoBike() : base() { }
+            public MotoBike(string code, string brand, string name, decimal price, string supplier)
+                : base(code, brand, name, price)
+            {
+                this.Supplier = supplier;
+            }
         }
     }
 }
