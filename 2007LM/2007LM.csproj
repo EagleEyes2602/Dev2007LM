@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Khoa.cs" />
+    <Compile Include="Model\Lop.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="IProductService.cs" />
     <Compile Include="ProductService.cs" />

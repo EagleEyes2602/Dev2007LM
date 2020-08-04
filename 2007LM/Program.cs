@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using Vehicle.TwoWheel;
+using _2007LM.Model;
 
 namespace _2007LM
 {
@@ -13,7 +14,71 @@ namespace _2007LM
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+            #region Session 07
+            #region LINQ
+            // Có thể thao tác dữ liệu 1 cách dễ dàng bằng C#
+            // LINQ Query -- gần giống như code T-SQL
+            List<Khoa> khoas = new List<Khoa>()
+            {
+                new Khoa(){Id = 1, Code = "K01", Name = "CNTT", Type = 1},
+                new Khoa(){Id = 2, Code = "K02", Name = "DTVT", Type = 1},
+                new Khoa(){Id = 3, Code = "K03", Name = "KinhTe", Type = 1}
+            };
 
+            IEnumerable<Lop> lops = new List<Lop>()
+            {
+                new Lop(){Id = 1, IdKhoa = 1, Code = "L01", Name = "CNTT1", Type = 1},
+                new Lop(){Id = 2, IdKhoa = 1, Code = "L02", Name = "CNTT2", Type = 1},
+                new Lop(){Id = 3, IdKhoa = 2, Code = "L03", Name = "DTVT1", Type = 1},
+                new Lop(){Id = 4, IdKhoa = 3, Code = "L04", Name = "KTVienThong", Type = 1},
+                new Lop(){Id = 5, IdKhoa = 3, Code = "L05", Name = "KTVanTai", Type = 0}
+            };
+
+            IEnumerable<Khoa> lst2 = (from k in khoas select k);
+
+            var response = from k in khoas
+                           where k.Id > 1
+                           orderby k.Name
+                           select k;
+
+            foreach (var res in response)
+            {
+                Console.WriteLine("Id: {0}, Code: {1}, Name: {2}", res.Id, res.Code, res.Name);
+            }
+
+            Console.WriteLine("-----------------------------------------------------");
+            var response1 = from k in khoas
+                            where k.Id > 1
+                            orderby k.Name
+                            select new { k.Code, k.Name };
+            foreach (var res in response1)
+            {
+                Console.WriteLine("Code: {0}, Name: {1}", res.Code, res.Name);
+            }
+
+            Console.WriteLine("-----------------------------------------------------");
+            var linqJoin = from k in khoas
+                           join l in lops on k.Id equals l.IdKhoa
+                           select new { khoa = k, lop = l };
+            foreach (var res in linqJoin)
+            {
+                Console.WriteLine("TenKhoa: {0}, TenLop: {1}", res.khoa.Name, res.lop.Name);
+            }
+
+            var linqJoin1 = from k in khoas
+                            join l in lops on new { Id = k.Id, Type = k.Type } equals 
+                                              new { Id = l.IdKhoa, Type = l.Type }
+                            select new { khoa = k, lop = l };
+
+            // LINQ Method -- sử dụng các function được dựng sẵn để query (lambda expression)
+            #endregion
+            #endregion
+            Console.ReadKey();
+        }
+
+        #region Session 06
+        public void Session06()
+        {
             #region NameSpace
             Car.Car car = new Car.Car() { Code = "MS650", Brand = "Merc", Name = "Merc S650 Maybach", Price = 900000 };
             car.Run();
@@ -31,7 +96,7 @@ namespace _2007LM
             {
                 // Chứa đoạn code muốn bắt lỗi / có khả năng xảy ra lỗi
                 int a = 10, b = 1;
-                int c = a / b;
+                int d = a / b;
                 //car = null;
                 car.Run();
                 throw new Exception("Lỗi rồi hihi");
@@ -74,9 +139,8 @@ namespace _2007LM
             iiToInt = new IntIntToInt(Minus);
             Console.WriteLine(iiToInt(1, 2));
 
-            int c = IiTi(true)(1,2);
+            int c = IiTi(true)(1, 2);
             #endregion
-            Console.ReadKey();
         }
 
         public delegate int IntIntToInt(int a, int b);
@@ -101,7 +165,7 @@ namespace _2007LM
                 Console.WriteLine("Tự giác mà sửa đi");
             }
         }
-
+        #endregion
         #region Session 05
 
         public void Session05()
