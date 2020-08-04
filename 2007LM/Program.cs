@@ -22,7 +22,8 @@ namespace _2007LM
             {
                 new Khoa(){Id = 1, Code = "K01", Name = "CNTT", Type = 1},
                 new Khoa(){Id = 2, Code = "K02", Name = "DTVT", Type = 1},
-                new Khoa(){Id = 3, Code = "K03", Name = "KinhTe", Type = 1}
+                new Khoa(){Id = 3, Code = "K03", Name = "KinhTe", Type = 1},
+                new Khoa(){Id = 4, Code = "K04", Name = "KHCoBan", Type = 1}
             };
 
             IEnumerable<Lop> lops = new List<Lop>()
@@ -31,7 +32,8 @@ namespace _2007LM
                 new Lop(){Id = 2, IdKhoa = 1, Code = "L02", Name = "CNTT2", Type = 1},
                 new Lop(){Id = 3, IdKhoa = 2, Code = "L03", Name = "DTVT1", Type = 1},
                 new Lop(){Id = 4, IdKhoa = 3, Code = "L04", Name = "KTVienThong", Type = 1},
-                new Lop(){Id = 5, IdKhoa = 3, Code = "L05", Name = "KTVanTai", Type = 0}
+                new Lop(){Id = 5, IdKhoa = 3, Code = "L05", Name = "KTVanTai", Type = 1},
+                new Lop(){Id = 6, IdKhoa = 3, Code = "L06", Name = "HoaHoc", Type = 0}
             };
 
             IEnumerable<Khoa> lst2 = (from k in khoas select k);
@@ -66,11 +68,38 @@ namespace _2007LM
             }
 
             var linqJoin1 = from k in khoas
-                            join l in lops on new { Id = k.Id, Type = k.Type } equals 
+                            join l in lops on new { Id = k.Id, Type = k.Type } equals
                                               new { Id = l.IdKhoa, Type = l.Type }
                             select new { khoa = k, lop = l };
 
+            var linqLeftJoin = from k in khoas
+                               join l in lops on k.Id equals l.IdKhoa into lgrp
+                               from l in lgrp.DefaultIfEmpty()
+                               select new { k, l };
+
+            Console.WriteLine("-----------------------------------------------------");
+            // Lấy ra những khoa có từ 2 lớp trở lên
+            var linqQuery1 = from T1 in (
+                                 from l in lops
+                                 group l by l.IdKhoa into lgrp
+                                 where lgrp.Count() > 1
+                                 orderby lgrp.Key descending
+                                 select new { IdKhoa = lgrp.Key, count = lgrp.Count() }
+                             )
+                             join k in khoas on T1.IdKhoa equals k.Id
+                             select new { TenKhoa = k.Name, SoLuongLop = T1.count }
+                             ;
+            foreach (var res in linqQuery1)
+            {
+                Console.WriteLine("TenKhoa: {0}, SoLuongLop: {1}", res.TenKhoa, res.SoLuongLop);
+            }
             // LINQ Method -- sử dụng các function được dựng sẵn để query (lambda expression)
+            var linqMethod1 = khoas.Where((x) => { return x.Id == 1; }).ToList();
+            var linqMethod2 = khoas.Where(x => x.Id == 1).ToList();
+            var linqMethod3 = khoas.OrderBy(x => x.Id).ThenBy(x => x.Name).FirstOrDefault();
+            var linqMethod4 = khoas.Join(lops, x => x.Id, y => y.IdKhoa, (x,y) => new { x, y }).Where(z=>z.x.Id == 1);
+
+            //(Khoa) => (bool)
             #endregion
             #endregion
             Console.ReadKey();
