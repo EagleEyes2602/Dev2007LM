@@ -14,7 +14,13 @@ namespace _2007LM
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            #region Session 07
+
+            Console.ReadKey();
+        }
+        #region Session 07
+        public static void Session07()
+        {
+
             #region LINQ
             // Có thể thao tác dữ liệu 1 cách dễ dàng bằng C#
             // LINQ Query -- gần giống như code T-SQL
@@ -97,14 +103,12 @@ namespace _2007LM
             var linqMethod1 = khoas.Where((x) => { return x.Id == 1; }).ToList();
             var linqMethod2 = khoas.Where(x => x.Id == 1).ToList();
             var linqMethod3 = khoas.OrderBy(x => x.Id).ThenBy(x => x.Name).FirstOrDefault();
-            var linqMethod4 = khoas.Join(lops, x => x.Id, y => y.IdKhoa, (x,y) => new { x, y }).Where(z=>z.x.Id == 1);
+            var linqMethod4 = khoas.Join(lops, x => x.Id, y => y.IdKhoa, (x, y) => new { x, y }).Where(z => z.x.Id == 1);
 
             //(Khoa) => (bool)
             #endregion
-            #endregion
-            Console.ReadKey();
         }
-
+        #endregion
         #region Session 06
         public void Session06()
         {
