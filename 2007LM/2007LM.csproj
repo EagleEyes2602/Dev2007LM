@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\Common.cs" />
     <Compile Include="Model\Khoa.cs" />
     <Compile Include="Model\Lop.cs" />
     <Compile Include="Product.cs" />
