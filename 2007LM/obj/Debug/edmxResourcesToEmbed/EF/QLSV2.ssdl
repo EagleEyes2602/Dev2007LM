@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSV_V2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="HOC_BONG">
+    <Key>
+      <PropertyRef Name="IDHB" />
+    </Key>
+    <Property Name="IDHB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DIEM_HB_CAN_DUOI" Type="float" Nullable="false" />
+    <Property Name="DIEM_HB_CAN_TREN" Type="float" Nullable="false" />
+    <Property Name="MUC_TIEN" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KET_QUA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSV" Type="int" Nullable="false" />
+    <Property Name="IDMH" Type="int" Nullable="false" />
+    <Property Name="DIEM" Type="float" />
+  </EntityType>
+  <EntityType Name="KHOA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MA" Type="char" MaxLength="4" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="LOP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDK" Type="int" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" />
+    <Property Name="PHONG" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="MON_HOC">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" />
+    <Property Name="TIN_CHI" Type="int" />
+  </EntityType>
+  <EntityType Name="SINH_VIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDL" Type="int" Nullable="false" />
+    <Property Name="HO" Type="nvarchar" MaxLength="255" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" />
+    <Property Name="DIA_CHI" Type="nvarchar" MaxLength="500" />
+    <Property Name="NGAY_SINH" Type="datetime" />
+    <Property Name="GIOI_TINH" Type="tinyint" />
+    <Property Name="DTB" Type="float" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TO_CHUC">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_CHA" Type="int" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLSV_V2.dbo.vw_THONG_TIN_SINH_VIEN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_THONG_TIN_SINH_VIEN">
+    <Key>
+      <PropertyRef Name="IDSV" />
+      <PropertyRef Name="IDL" />
+      <PropertyRef Name="IDK" />
+    </Key>
+    <Property Name="IDSV" Type="int" Nullable="false" />
+    <Property Name="HO_SV" Type="nvarchar" MaxLength="255" />
+    <Property Name="TEN_SV" Type="nvarchar" MaxLength="255" />
+    <Property Name="DIA_CHI" Type="nvarchar" MaxLength="500" />
+    <Property Name="NGAY_SINH" Type="datetime" />
+    <Property Name="GIOI_TINH" Type="tinyint" />
+    <Property Name="IDL" Type="int" Nullable="false" />
+    <Property Name="TEN_LOP" Type="nvarchar" MaxLength="255" />
+    <Property Name="PHONG" Type="varchar" MaxLength="20" />
+    <Property Name="IDK" Type="int" Nullable="false" />
+    <Property Name="TEN_KHOA" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__KET_QUA__IDMH__7A672E12">
+    <End Role="MON_HOC" Type="Self.MON_HOC" Multiplicity="1" />
+    <End Role="KET_QUA" Type="Self.KET_QUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MON_HOC">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="KET_QUA">
+        <PropertyRef Name="IDMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KET_QUA__IDSV__797309D9">
+    <End Role="SINH_VIEN" Type="Self.SINH_VIEN" Multiplicity="1" />
+    <End Role="KET_QUA" Type="Self.KET_QUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SINH_VIEN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="KET_QUA">
+        <PropertyRef Name="IDSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LOP__IDK__6D0D32F4">
+    <End Role="KHOA" Type="Self.KHOA" Multiplicity="1" />
+    <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LOP">
+        <PropertyRef Name="IDK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SINH_VIEN__IDL__6FE99F9F">
+    <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
+    <End Role="SINH_VIEN" Type="Self.SINH_VIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SINH_VIEN">
+        <PropertyRef Name="IDL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_SPLIT_STRING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Str" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Char" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="val" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_SUBSTRING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="Str" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="StartIndex" Type="int" Mode="In" />
+    <Parameter Name="CountChar" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spud_SINH_VIEN_GET_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_SV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spud_SINH_VIEN_GET_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="TotalRecord" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="spud_TO_CHUC_GET_PARENT_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="QLSV_V2ModelStoreContainer">
+    <EntitySet Name="HOC_BONG" EntityType="Self.HOC_BONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KET_QUA" EntityType="Self.KET_QUA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHOA" EntityType="Self.KHOA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOP" EntityType="Self.LOP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MON_HOC" EntityType="Self.MON_HOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SINH_VIEN" EntityType="Self.SINH_VIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TO_CHUC" EntityType="Self.TO_CHUC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_THONG_TIN_SINH_VIEN" EntityType="Self.vw_THONG_TIN_SINH_VIEN" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_THONG_TIN_SINH_VIEN].[IDSV] AS [IDSV], 
+    [vw_THONG_TIN_SINH_VIEN].[HO_SV] AS [HO_SV], 
+    [vw_THONG_TIN_SINH_VIEN].[TEN_SV] AS [TEN_SV], 
+    [vw_THONG_TIN_SINH_VIEN].[DIA_CHI] AS [DIA_CHI], 
+    [vw_THONG_TIN_SINH_VIEN].[NGAY_SINH] AS [NGAY_SINH], 
+    [vw_THONG_TIN_SINH_VIEN].[GIOI_TINH] AS [GIOI_TINH], 
+    [vw_THONG_TIN_SINH_VIEN].[IDL] AS [IDL], 
+    [vw_THONG_TIN_SINH_VIEN].[TEN_LOP] AS [TEN_LOP], 
+    [vw_THONG_TIN_SINH_VIEN].[PHONG] AS [PHONG], 
+    [vw_THONG_TIN_SINH_VIEN].[IDK] AS [IDK], 
+    [vw_THONG_TIN_SINH_VIEN].[TEN_KHOA] AS [TEN_KHOA]
+    FROM [dbo].[vw_THONG_TIN_SINH_VIEN] AS [vw_THONG_TIN_SINH_VIEN]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__KET_QUA__IDMH__7A672E12" Association="Self.FK__KET_QUA__IDMH__7A672E12">
+      <End Role="MON_HOC" EntitySet="MON_HOC" />
+      <End Role="KET_QUA" EntitySet="KET_QUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KET_QUA__IDSV__797309D9" Association="Self.FK__KET_QUA__IDSV__797309D9">
+      <End Role="SINH_VIEN" EntitySet="SINH_VIEN" />
+      <End Role="KET_QUA" EntitySet="KET_QUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LOP__IDK__6D0D32F4" Association="Self.FK__LOP__IDK__6D0D32F4">
+      <End Role="KHOA" EntitySet="KHOA" />
+      <End Role="LOP" EntitySet="LOP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SINH_VIEN__IDL__6FE99F9F" Association="Self.FK__SINH_VIEN__IDL__6FE99F9F">
+      <End Role="LOP" EntitySet="LOP" />
+      <End Role="SINH_VIEN" EntitySet="SINH_VIEN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

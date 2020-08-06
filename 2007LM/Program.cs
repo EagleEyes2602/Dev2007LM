@@ -6,17 +6,44 @@ using System.Threading.Tasks;
 using System.Collections;
 using Vehicle.TwoWheel;
 using _2007LM.Model;
+using _2007LM.Helper;
+using _2007LM.EF;
+using System.Data.Entity;
 
 namespace _2007LM
 {
     class Program
     {
+        public static QLSV_V2Entities db = new QLSV_V2Entities();
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-
+            foreach (var item in db.MON_HOC)
+            {
+                Console.WriteLine("Id: {0},Tên: {1},Tín chỉ: {2},",item.ID, item.TEN, item.TIN_CHI);
+            }
+            // INSERT
+            MON_HOC mh = new MON_HOC() { TEN = "Kinh tế lượng", TIN_CHI = 5 };
+            db.MON_HOC.Add(mh);
+            db.SaveChanges();
+            // DELETE
+            var mh370 = db.MON_HOC.Where(x => x.ID == 1).FirstOrDefault();
+            db.MON_HOC.Remove(mh370);
+            db.SaveChanges();
+            // UPDATE
+            MON_HOC mhTemp = db.MON_HOC.Where(x => x.ID == 2).FirstOrDefault();
+            mhTemp.TIN_CHI = 10;
+            db.Entry(mhTemp).State = EntityState.Modified;
+            db.SaveChanges();
             Console.ReadKey();
         }
+
+        #region Session08
+        public static void Session08()
+        {
+            //Common.ConnectDB();
+        }
+        #endregion
         #region Session 07
         public static void Session07()
         {

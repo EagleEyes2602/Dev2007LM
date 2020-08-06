@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSV_V2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_SPLIT_STRING_Result">
+    <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="HOC_BONG">
+    <Key>
+      <PropertyRef Name="IDHB" />
+    </Key>
+    <Property Name="IDHB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DIEM_HB_CAN_DUOI" Type="Double" Nullable="false" />
+    <Property Name="DIEM_HB_CAN_TREN" Type="Double" Nullable="false" />
+    <Property Name="MUC_TIEN" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KET_QUA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDSV" Type="Int32" Nullable="false" />
+    <Property Name="IDMH" Type="Int32" Nullable="false" />
+    <Property Name="DIEM" Type="Double" />
+    <NavigationProperty Name="MON_HOC" Relationship="Self.FK__KET_QUA__IDMH__7A672E12" FromRole="KET_QUA" ToRole="MON_HOC" />
+    <NavigationProperty Name="SINH_VIEN" Relationship="Self.FK__KET_QUA__IDSV__797309D9" FromRole="KET_QUA" ToRole="SINH_VIEN" />
+  </EntityType>
+  <EntityType Name="KHOA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MA" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LOPs" Relationship="Self.FK__LOP__IDK__6D0D32F4" FromRole="KHOA" ToRole="LOP" />
+  </EntityType>
+  <EntityType Name="LOP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDK" Type="Int32" Nullable="false" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KHOA" Relationship="Self.FK__LOP__IDK__6D0D32F4" FromRole="LOP" ToRole="KHOA" />
+    <NavigationProperty Name="SINH_VIEN" Relationship="Self.FK__SINH_VIEN__IDL__6FE99F9F" FromRole="LOP" ToRole="SINH_VIEN" />
+  </EntityType>
+  <EntityType Name="MON_HOC">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TIN_CHI" Type="Int32" />
+    <NavigationProperty Name="KET_QUA" Relationship="Self.FK__KET_QUA__IDMH__7A672E12" FromRole="MON_HOC" ToRole="KET_QUA" />
+  </EntityType>
+  <EntityType Name="SINH_VIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDL" Type="Int32" Nullable="false" />
+    <Property Name="HO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DIA_CHI" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NGAY_SINH" Type="DateTime" Precision="3" />
+    <Property Name="GIOI_TINH" Type="Byte" />
+    <Property Name="DTB" Type="Double" />
+    <NavigationProperty Name="KET_QUA" Relationship="Self.FK__KET_QUA__IDSV__797309D9" FromRole="SINH_VIEN" ToRole="KET_QUA" />
+    <NavigationProperty Name="LOP" Relationship="Self.FK__SINH_VIEN__IDL__6FE99F9F" FromRole="SINH_VIEN" ToRole="LOP" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TO_CHUC">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_CHA" Type="Int32" Nullable="false" />
+    <Property Name="TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_THONG_TIN_SINH_VIEN">
+    <Key>
+      <PropertyRef Name="IDSV" />
+      <PropertyRef Name="IDL" />
+      <PropertyRef Name="IDK" />
+    </Key>
+    <Property Name="IDSV" Type="Int32" Nullable="false" />
+    <Property Name="HO_SV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TEN_SV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DIA_CHI" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NGAY_SINH" Type="DateTime" Precision="3" />
+    <Property Name="GIOI_TINH" Type="Byte" />
+    <Property Name="IDL" Type="Int32" Nullable="false" />
+    <Property Name="TEN_LOP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IDK" Type="Int32" Nullable="false" />
+    <Property Name="TEN_KHOA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__KET_QUA__IDMH__7A672E12">
+    <End Role="MON_HOC" Type="Self.MON_HOC" Multiplicity="1" />
+    <End Role="KET_QUA" Type="Self.KET_QUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MON_HOC">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="KET_QUA">
+        <PropertyRef Name="IDMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KET_QUA__IDSV__797309D9">
+    <End Role="SINH_VIEN" Type="Self.SINH_VIEN" Multiplicity="1" />
+    <End Role="KET_QUA" Type="Self.KET_QUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SINH_VIEN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="KET_QUA">
+        <PropertyRef Name="IDSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LOP__IDK__6D0D32F4">
+    <End Role="KHOA" Type="Self.KHOA" Multiplicity="1" />
+    <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LOP">
+        <PropertyRef Name="IDK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SINH_VIEN__IDL__6FE99F9F">
+    <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
+    <End Role="SINH_VIEN" Type="Self.SINH_VIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SINH_VIEN">
+        <PropertyRef Name="IDL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSV_V2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="HOC_BONG" EntityType="Self.HOC_BONG" />
+    <EntitySet Name="KET_QUA" EntityType="Self.KET_QUA" />
+    <EntitySet Name="KHOAs" EntityType="Self.KHOA" />
+    <EntitySet Name="LOPs" EntityType="Self.LOP" />
+    <EntitySet Name="MON_HOC" EntityType="Self.MON_HOC" />
+    <EntitySet Name="SINH_VIEN" EntityType="Self.SINH_VIEN" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TO_CHUC" EntityType="Self.TO_CHUC" />
+    <EntitySet Name="vw_THONG_TIN_SINH_VIEN" EntityType="Self.vw_THONG_TIN_SINH_VIEN" />
+    <AssociationSet Name="FK__KET_QUA__IDMH__7A672E12" Association="Self.FK__KET_QUA__IDMH__7A672E12">
+      <End Role="MON_HOC" EntitySet="MON_HOC" />
+      <End Role="KET_QUA" EntitySet="KET_QUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KET_QUA__IDSV__797309D9" Association="Self.FK__KET_QUA__IDSV__797309D9">
+      <End Role="SINH_VIEN" EntitySet="SINH_VIEN" />
+      <End Role="KET_QUA" EntitySet="KET_QUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LOP__IDK__6D0D32F4" Association="Self.FK__LOP__IDK__6D0D32F4">
+      <End Role="KHOA" EntitySet="KHOAs" />
+      <End Role="LOP" EntitySet="LOPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SINH_VIEN__IDL__6FE99F9F" Association="Self.FK__SINH_VIEN__IDL__6FE99F9F">
+      <End Role="LOP" EntitySet="LOPs" />
+      <End Role="SINH_VIEN" EntitySet="SINH_VIEN" />
+    </AssociationSet>
+    <FunctionImport Name="fn_SPLIT_STRING" IsComposable="true" ReturnType="Collection(QLSV_V2Model.fn_SPLIT_STRING_Result)">
+      <Parameter Name="Str" Mode="In" Type="String" />
+      <Parameter Name="Char" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLSV_V2Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLSV_V2Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="spud_SINH_VIEN_GET_BY_ID" ReturnType="Collection(QLSV_V2Model.spud_SINH_VIEN_GET_BY_ID_Result)">
+      <Parameter Name="ID_SV" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spud_SINH_VIEN_GET_PAGING" ReturnType="Collection(QLSV_V2Model.spud_SINH_VIEN_GET_PAGING_Result)">
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRecord" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spud_TO_CHUC_GET_PARENT_BY_ID" ReturnType="Collection(QLSV_V2Model.spud_TO_CHUC_GET_PARENT_BY_ID_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spud_SINH_VIEN_GET_BY_ID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="IDL" Nullable="false" />
+    <Property Type="String" Name="HO_TEN" Nullable="true" MaxLength="511" />
+    <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="GIOI_TINH" Nullable="false" MaxLength="4" />
+  </ComplexType>
+  <ComplexType Name="spud_SINH_VIEN_GET_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="IDL" Nullable="false" />
+    <Property Type="String" Name="HO_TEN" Nullable="true" MaxLength="511" />
+    <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" Precision="23" />
+    <Property Type="String" Name="GIOI_TINH" Nullable="false" MaxLength="4" />
+  </ComplexType>
+  <ComplexType Name="spud_TO_CHUC_GET_PARENT_BY_ID_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="ID_CHA" Nullable="true" />
+    <Property Type="String" Name="TEN" Nullable="true" MaxLength="255" />
+  </ComplexType>
+</Schema>

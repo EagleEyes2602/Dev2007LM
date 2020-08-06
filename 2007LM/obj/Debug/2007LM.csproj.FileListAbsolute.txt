@@ -5,3 +5,8 @@ D:\Students\2007LM\2007LM\obj\Debug\2007LM.csprojAssemblyReference.cache
 D:\Students\2007LM\2007LM\obj\Debug\2007LM.csproj.CoreCompileInputs.cache
 D:\Students\2007LM\2007LM\obj\Debug\2007LM.exe
 D:\Students\2007LM\2007LM\obj\Debug\2007LM.pdb
+D:\Students\2007LM\2007LM\bin\Debug\EntityFramework.dll
+D:\Students\2007LM\2007LM\bin\Debug\EntityFramework.SqlServer.dll
+D:\Students\2007LM\2007LM\bin\Debug\EntityFramework.xml
+D:\Students\2007LM\2007LM\bin\Debug\EntityFramework.SqlServer.xml
+D:\Students\2007LM\2007LM\obj\Debug\2007LM.csproj.CopyComplete

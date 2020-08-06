@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,8 +52,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\fn_SPLIT_STRING_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\HOC_BONG.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\KET_QUA.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\KHOA.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\LOP.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MON_HOC.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QLSV2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSV2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QLSV2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QLSV2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSV2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\SINH_VIEN.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\spud_SINH_VIEN_GET_BY_ID_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\spud_SINH_VIEN_GET_PAGING_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\spud_TO_CHUC_GET_PARENT_BY_ID_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TO_CHUC.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vw_THONG_TIN_SINH_VIEN.cs">
+      <DependentUpon>QLSV2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Common.cs" />
     <Compile Include="Model\Khoa.cs" />
+    <Compile Include="Model\KhoaModel.cs" />
     <Compile Include="Model\Lop.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="IProductService.cs" />
@@ -56,6 +126,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF\QLSV2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLSV2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\QLSV2.edmx.diagram">
+      <DependentUpon>QLSV2.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\QLSV2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QLSV2.Context.cs</LastGenOutput>
+      <DependentUpon>QLSV2.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF\QLSV2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLSV2.edmx</DependentUpon>
+      <LastGenOutput>QLSV2.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
