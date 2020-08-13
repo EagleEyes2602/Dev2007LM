@@ -78,3 +78,7 @@ D:\Students\2007LM\Net2006MVC\Net2006MVC\obj\Debug\Net2006MVC.csproj.CoreCompile
 D:\Students\2007LM\Net2006MVC\Net2006MVC\obj\Debug\Net2006MVC.csproj.CopyComplete
 D:\Students\2007LM\Net2006MVC\Net2006MVC\obj\Debug\Net2006MVC.dll
 D:\Students\2007LM\Net2006MVC\Net2006MVC\obj\Debug\Net2006MVC.pdb
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.dll
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.SqlServer.dll
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.xml
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.SqlServer.xml

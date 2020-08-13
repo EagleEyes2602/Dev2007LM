@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyThuVienDevmasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Byte" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__BookTitle__Autho__5070F446" FromRole="Author" ToRole="BookTitle" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BookTitleId" Type="Int32" Nullable="false" />
+    <Property Name="BookLocation" Type="Int32" />
+    <Property Name="OriginalState" Type="Byte" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__Book__BookTitleI__5812160E" FromRole="Book" ToRole="BookTitle" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Book__CreatedBy__5AEE82B9" FromRole="Book" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Book__UpdatedBy__5BE2A6F2" FromRole="Book" ToRole="Employee" />
+    <NavigationProperty Name="BookBorrowReturnDetail" Relationship="Self.FK__BookBorro__BookI__6D0D32F4" FromRole="Book" ToRole="BookBorrowReturnDetail" />
+    <NavigationProperty Name="BookLocation1" Relationship="Self.FK_Book_BookLocation" FromRole="Book" ToRole="BookLocation" />
+  </EntityType>
+  <EntityType Name="BookBorrowReturn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReaderId" Type="Int32" Nullable="false" />
+    <Property Name="Deposits" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BorrowFee" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PenaltyFee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsOnline" Type="Boolean" />
+    <Property Name="IsBorrow" Type="Boolean" />
+    <Property Name="IsReturn" Type="Boolean" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="ReturnTime" Type="DateTime" Precision="3" />
+    <Property Name="BorrowTime" Type="DateTime" Precision="3" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookBorrowReturnDetail" Relationship="Self.FK__BookBorro__BookB__6C190EBB" FromRole="BookBorrowReturn" ToRole="BookBorrowReturnDetail" />
+    <NavigationProperty Name="Reader" Relationship="Self.FK__BookBorro__Reade__656C112C" FromRole="BookBorrowReturn" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="BookBorrowReturnDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookBorrowReturnId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="ReturnState" Type="Byte" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__BookBorro__BookI__6D0D32F4" FromRole="BookBorrowReturnDetail" ToRole="Book" />
+    <NavigationProperty Name="BookBorrowReturn" Relationship="Self.FK__BookBorro__BookB__6C190EBB" FromRole="BookBorrowReturnDetail" ToRole="BookBorrowReturn" />
+  </EntityType>
+  <EntityType Name="BookLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Book_BookLocation" FromRole="BookLocation" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="BookTitle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PublisherId" Type="Int32" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="BookTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ReleaserId" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PublishYear" Type="Int32" />
+    <Property Name="PageNo" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="Author" Relationship="Self.FK__BookTitle__Autho__5070F446" FromRole="BookTitle" ToRole="Author" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__Book__BookTitleI__5812160E" FromRole="BookTitle" ToRole="Book" />
+    <NavigationProperty Name="BookType" Relationship="Self.FK__BookTitle__BookT__5165187F" FromRole="BookTitle" ToRole="BookType" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__BookTitle__Creat__534D60F1" FromRole="BookTitle" ToRole="Employee" />
+    <NavigationProperty Name="Publisher" Relationship="Self.FK__BookTitle__Publi__4F7CD00D" FromRole="BookTitle" ToRole="Publisher" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__BookTitle__Updat__5441852A" FromRole="BookTitle" ToRole="Employee" />
+    <NavigationProperty Name="Review" Relationship="Self.FK__Review__BookTitl__60A75C0F" FromRole="BookTitle" ToRole="Review" />
+    <NavigationProperty Name="Releaser" Relationship="Self.FK_BookTitle_Releaser" FromRole="BookTitle" ToRole="Releaser" />
+  </EntityType>
+  <EntityType Name="BookType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__BookTitle__BookT__5165187F" FromRole="BookType" ToRole="BookTitle" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="Byte" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__Book__CreatedBy__5AEE82B9" FromRole="Employee" ToRole="Book" />
+    <NavigationProperty Name="Book1" Relationship="Self.FK__Book__UpdatedBy__5BE2A6F2" FromRole="Employee" ToRole="Book" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__BookTitle__Creat__534D60F1" FromRole="Employee" ToRole="BookTitle" />
+    <NavigationProperty Name="BookTitle1" Relationship="Self.FK__BookTitle__Updat__5441852A" FromRole="Employee" ToRole="BookTitle" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Employee__Create__4316F928" FromRole="Employee" ToRole="Employee1" />
+    <NavigationProperty Name="Employee2" Relationship="Self.FK__Employee__Create__4316F928" FromRole="Employee1" ToRole="Employee" />
+    <NavigationProperty Name="Employee11" Relationship="Self.FK__Employee__Update__440B1D61" FromRole="Employee" ToRole="Employee1" />
+    <NavigationProperty Name="Employee3" Relationship="Self.FK__Employee__Update__440B1D61" FromRole="Employee1" ToRole="Employee" />
+    <NavigationProperty Name="Reader" Relationship="Self.FK__Reader__CreatedB__4AB81AF0" FromRole="Employee" ToRole="Reader" />
+    <NavigationProperty Name="Reader1" Relationship="Self.FK__Reader__UpdatedB__4BAC3F29" FromRole="Employee" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__BookTitle__Publi__4F7CD00D" FromRole="Publisher" ToRole="BookTitle" />
+  </EntityType>
+  <EntityType Name="Reader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="Byte" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookBorrowReturn" Relationship="Self.FK__BookBorro__Reade__656C112C" FromRole="Reader" ToRole="BookBorrowReturn" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Reader__CreatedB__4AB81AF0" FromRole="Reader" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Reader__UpdatedB__4BAC3F29" FromRole="Reader" ToRole="Employee" />
+    <NavigationProperty Name="Review" Relationship="Self.FK__Review__ReaderId__5FB337D6" FromRole="Reader" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="Releaser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK_BookTitle_Releaser" FromRole="Releaser" ToRole="BookTitle" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReaderId" Type="Int32" Nullable="false" />
+    <Property Name="BookTitleId" Type="Int32" Nullable="false" />
+    <Property Name="Point" Type="Byte" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BookTitle" Relationship="Self.FK__Review__BookTitl__60A75C0F" FromRole="Review" ToRole="BookTitle" />
+    <NavigationProperty Name="Reader" Relationship="Self.FK__Review__ReaderId__5FB337D6" FromRole="Review" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemConfigParameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" />
+  </EntityType>
+  <Association Name="FK__BookTitle__Autho__5070F446">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__BookTitleI__5812160E">
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="BookTitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__CreatedBy__5AEE82B9">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__UpdatedBy__5BE2A6F2">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookBorro__BookI__6D0D32F4">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookBorrowReturnDetail" Type="Self.BookBorrowReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookBorrowReturnDetail">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_BookLocation">
+    <End Role="BookLocation" Type="Self.BookLocation" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookLocation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="BookLocation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookBorro__BookB__6C190EBB">
+    <End Role="BookBorrowReturn" Type="Self.BookBorrowReturn" Multiplicity="1" />
+    <End Role="BookBorrowReturnDetail" Type="Self.BookBorrowReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookBorrowReturn">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookBorrowReturnDetail">
+        <PropertyRef Name="BookBorrowReturnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookBorro__Reade__656C112C">
+    <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+    <End Role="BookBorrowReturn" Type="Self.BookBorrowReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookBorrowReturn">
+        <PropertyRef Name="ReaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookTitle__BookT__5165187F">
+    <End Role="BookType" Type="Self.BookType" Multiplicity="1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="BookTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookTitle__Creat__534D60F1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookTitle__Publi__4F7CD00D">
+    <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="PublisherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookTitle__Updat__5441852A">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Review__BookTitl__60A75C0F">
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="BookTitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookTitle_Releaser">
+    <End Role="Releaser" Type="Self.Releaser" Multiplicity="1" />
+    <End Role="BookTitle" Type="Self.BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Releaser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="ReleaserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Create__4316F928">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Update__440B1D61">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee1">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reader__CreatedB__4AB81AF0">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reader">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reader__UpdatedB__4BAC3F29">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reader">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Review__ReaderId__5FB337D6">
+    <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="ReaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyThuVienDevmasterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="Self.Author" />
+    <EntitySet Name="Book" EntityType="Self.Book" />
+    <EntitySet Name="BookBorrowReturn" EntityType="Self.BookBorrowReturn" />
+    <EntitySet Name="BookBorrowReturnDetail" EntityType="Self.BookBorrowReturnDetail" />
+    <EntitySet Name="BookLocation" EntityType="Self.BookLocation" />
+    <EntitySet Name="BookTitle" EntityType="Self.BookTitle" />
+    <EntitySet Name="BookType" EntityType="Self.BookType" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Publisher" EntityType="Self.Publisher" />
+    <EntitySet Name="Reader" EntityType="Self.Reader" />
+    <EntitySet Name="Releaser" EntityType="Self.Releaser" />
+    <EntitySet Name="Review" EntityType="Self.Review" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="SystemConfigParameter" EntityType="Self.SystemConfigParameter" />
+    <AssociationSet Name="FK__BookTitle__Autho__5070F446" Association="Self.FK__BookTitle__Autho__5070F446">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__BookTitleI__5812160E" Association="Self.FK__Book__BookTitleI__5812160E">
+      <End Role="BookTitle" EntitySet="BookTitle" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__CreatedBy__5AEE82B9" Association="Self.FK__Book__CreatedBy__5AEE82B9">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__UpdatedBy__5BE2A6F2" Association="Self.FK__Book__UpdatedBy__5BE2A6F2">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookBorro__BookI__6D0D32F4" Association="Self.FK__BookBorro__BookI__6D0D32F4">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookBorrowReturnDetail" EntitySet="BookBorrowReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_BookLocation" Association="Self.FK_Book_BookLocation">
+      <End Role="BookLocation" EntitySet="BookLocation" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookBorro__BookB__6C190EBB" Association="Self.FK__BookBorro__BookB__6C190EBB">
+      <End Role="BookBorrowReturn" EntitySet="BookBorrowReturn" />
+      <End Role="BookBorrowReturnDetail" EntitySet="BookBorrowReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookBorro__Reade__656C112C" Association="Self.FK__BookBorro__Reade__656C112C">
+      <End Role="Reader" EntitySet="Reader" />
+      <End Role="BookBorrowReturn" EntitySet="BookBorrowReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookTitle__BookT__5165187F" Association="Self.FK__BookTitle__BookT__5165187F">
+      <End Role="BookType" EntitySet="BookType" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookTitle__Creat__534D60F1" Association="Self.FK__BookTitle__Creat__534D60F1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookTitle__Publi__4F7CD00D" Association="Self.FK__BookTitle__Publi__4F7CD00D">
+      <End Role="Publisher" EntitySet="Publisher" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookTitle__Updat__5441852A" Association="Self.FK__BookTitle__Updat__5441852A">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__BookTitl__60A75C0F" Association="Self.FK__Review__BookTitl__60A75C0F">
+      <End Role="BookTitle" EntitySet="BookTitle" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookTitle_Releaser" Association="Self.FK_BookTitle_Releaser">
+      <End Role="Releaser" EntitySet="Releaser" />
+      <End Role="BookTitle" EntitySet="BookTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Create__4316F928" Association="Self.FK__Employee__Create__4316F928">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Employee1" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Update__440B1D61" Association="Self.FK__Employee__Update__440B1D61">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Employee1" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reader__CreatedB__4AB81AF0" Association="Self.FK__Reader__CreatedB__4AB81AF0">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Reader" EntitySet="Reader" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reader__UpdatedB__4BAC3F29" Association="Self.FK__Reader__UpdatedB__4BAC3F29">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Reader" EntitySet="Reader" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__ReaderId__5FB337D6" Association="Self.FK__Review__ReaderId__5FB337D6">
+      <End Role="Reader" EntitySet="Reader" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

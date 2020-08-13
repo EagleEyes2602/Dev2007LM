@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77a6e5b992144d1490642becbe13d400" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Author" Width="1.5" PointX="3.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Book" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.BookBorrowReturn" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.BookBorrowReturnDetail" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.BookLocation" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.BookTitle" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.BookType" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Employee" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Publisher" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Reader" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Releaser" Width="1.5" PointX="3.75" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.Review" Width="1.5" PointX="10.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienDevmasterModel.SystemConfigParameter" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookTitle__Autho__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Book__BookTitleI__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Book__CreatedBy__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Book__UpdatedBy__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookBorro__BookI__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK_Book_BookLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookBorro__BookB__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookBorro__Reade__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookTitle__BookT__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookTitle__Creat__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookTitle__Publi__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__BookTitle__Updat__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Review__BookTitl__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK_BookTitle_Releaser" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Employee__Create__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Employee__Update__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Reader__CreatedB__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Reader__UpdatedB__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienDevmasterModel.FK__Review__ReaderId__5FB337D6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
