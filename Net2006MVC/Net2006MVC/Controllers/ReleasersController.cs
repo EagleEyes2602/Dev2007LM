@@ -17,6 +17,10 @@ namespace Net2006MVC.Controllers
         // GET: Releasers
         public ActionResult Index()
         {
+            ViewBag.TotalRecord = db.Releaser.Count();
+            ViewData["TotalRecord"] = db.Releaser.Count();
+            TempData["TotalRecord"] = db.Releaser.Count();
+            Session["TotalRecord"] = db.Releaser.Count();
             return View(db.Releaser.ToList());
         }
 
@@ -84,7 +88,7 @@ namespace Net2006MVC.Controllers
             {
                 db.Entry(releaser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Releasers");
             }
             return View(releaser);
         }

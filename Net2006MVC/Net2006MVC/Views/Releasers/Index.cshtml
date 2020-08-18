@@ -10,6 +10,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p>
+    Tổng số lượng bản ghi (ViewBag): @ViewBag.TotalRecord
+</p>
+<p>
+    Tổng số lượng bản ghi (ViewData): @ViewData["TotalRecord"]
+</p>
+<p>
+    Tổng số lượng bản ghi (TempData): @TempData["TotalRecord"]
+</p>
+<p>
+    Tổng số lượng bản ghi (Session): @Session["TotalRecord"]
+</p>
 <table class="table">
     <tr>
         <th>
