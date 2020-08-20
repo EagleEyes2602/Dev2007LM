@@ -23,7 +23,7 @@ namespace Net2006MVC.Controllers
             if (ModelState.IsValid)
             {
                 string hashedPassword = Encription.ComputeSha256Hash(employee.Password);
-                Employee emp = db.Employee.Where(x => x.Email == employee.Email && x.Password == hashedPassword).FirstOrDefault();
+                Employee emp = db.Employee.Where(x => x.Email == employee.Email && x.Password == hashedPassword && x.Status == 1).FirstOrDefault();
                 if (emp != null)
                 {
                     Session["Employee"] = emp;

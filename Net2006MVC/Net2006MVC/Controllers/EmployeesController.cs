@@ -10,111 +10,116 @@ using Net2006MVC.Models.EF;
 
 namespace Net2006MVC.Controllers
 {
-    public class ReleasersController : BaseController
+    public class EmployeesController : Controller
     {
         private QuanLyThuVienDevmasterEntities db = new QuanLyThuVienDevmasterEntities();
 
-        // GET: Releasers
+        // GET: Employees
         public ActionResult Index()
         {
-            ViewBag.TotalRecord = db.Releaser.Count();
-            ViewData["TotalRecord"] = db.Releaser.Count();
-            TempData["TotalRecord"] = db.Releaser.Count();
-            Session["TotalRecord"] = db.Releaser.Count();
-            return View(db.Releaser.ToList());
+            var employee = db.Employee;
+            return View(employee.ToList());
         }
 
-        // GET: Releasers/Details/5
+        // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Releaser releaser = db.Releaser.Find(id);
-            if (releaser == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(releaser);
+            return View(employee);
         }
 
-        // GET: Releasers/Create
+        // GET: Employees/Create
         public ActionResult Create()
         {
+            ViewBag.CreatedBy = new SelectList(db.Employee, "Id", "Code");
+            ViewBag.UpdatedBy = new SelectList(db.Employee, "Id", "Code");
             return View();
         }
 
-        // POST: Releasers/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Notes,Status")] Releaser releaser)
+        public ActionResult Create([Bind(Include = "Id,Code,FirstName,LastName,Email,Password,Phone,Gender,DOB,CreatedTime,UpdatedTime,CreatedBy,UpdatedBy,Notes,Status")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Releaser.Add(releaser);
+                db.Employee.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(releaser);
+            ViewBag.CreatedBy = new SelectList(db.Employee, "Id", "Code", employee.CreatedBy);
+            ViewBag.UpdatedBy = new SelectList(db.Employee, "Id", "Code", employee.UpdatedBy);
+            return View(employee);
         }
 
-        // GET: Releasers/Edit/5
+        // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Releaser releaser = db.Releaser.Find(id);
-            if (releaser == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(releaser);
+            ViewBag.CreatedBy = new SelectList(db.Employee, "Id", "Code", employee.CreatedBy);
+            ViewBag.UpdatedBy = new SelectList(db.Employee, "Id", "Code", employee.UpdatedBy);
+            return View(employee);
         }
 
-        // POST: Releasers/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Code,Name,Notes,Status")] Releaser releaser)
+        public ActionResult Edit([Bind(Include = "Id,Code,FirstName,LastName,Email,Password,Phone,Gender,DOB,CreatedTime,UpdatedTime,CreatedBy,UpdatedBy,Notes,Status")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(releaser).State = EntityState.Modified;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Releasers");
+                return RedirectToAction("Index");
             }
-            return View(releaser);
+            ViewBag.CreatedBy = new SelectList(db.Employee, "Id", "Code", employee.CreatedBy);
+            ViewBag.UpdatedBy = new SelectList(db.Employee, "Id", "Code", employee.UpdatedBy);
+            return View(employee);
         }
 
-        // GET: Releasers/Delete/5
+        // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Releaser releaser = db.Releaser.Find(id);
-            if (releaser == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(releaser);
+            return View(employee);
         }
 
-        // POST: Releasers/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Releaser releaser = db.Releaser.Find(id);
-            db.Releaser.Remove(releaser);
+            Employee employee = db.Employee.Find(id);
+            db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
