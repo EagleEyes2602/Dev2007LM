@@ -36,56 +36,60 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @item.FirstName<span>&nbsp;</span>@item.LastName
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @{
-                if (item.Gender == 1)
-                {
-                    <span>Nam</span>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @item.FirstName<span>&nbsp;</span>@item.LastName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @{
+                    if (item.Gender == 1)
+                    {
+                        <span>Nam</span>
+                    }
+                    else
+                    {
+                        <span>Nữ</span>
+                    }
                 }
-                else
+            </td>
+            <td>
+                @if (item.DOB != null)
                 {
-                    <span>Nữ</span>
+                    <span>@item.DOB.Value.ToString("dd/MM/yyyy")</span>
                 }
-            }
-        </td>
-        <td>
-            @if (item.DOB != null)
-            {
-                <span>@item.DOB.Value.ToString("dd/MM/yyyy")</span>
-            }
-        </td>
-        <td>
-            @{
-                if (item.Status == 1)
-                {
-                    <span>Hoạt động</span>
+            </td>
+            <td>
+                @{
+                    if (item.Status == 1)
+                    {
+                        <span>Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span>Không hoạt động</span>
+                    }
                 }
-                else
-                {
-                    <span>Không hoạt động</span>
-                }
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                <a data-toggle="modal" data-target="#myModal">ChangePassword</a> |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.Action("ChangePassword", "Employees")

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Net2006MVC.Models;
 using Net2006MVC.Models.EF;
 
 namespace Net2006MVC.Controllers
@@ -19,6 +20,23 @@ namespace Net2006MVC.Controllers
         {
             var employee = db.Employee;
             return View(employee.ToList());
+        }
+
+        public PartialViewResult ChangePassword()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePassword changePassword)
+        {
+            if (ModelState.IsValid)
+            {
+                // Đổi mật khẩu
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         // GET: Employees/Details/5
