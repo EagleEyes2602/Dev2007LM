@@ -1,0 +1,43 @@
+﻿@model Net2006MVC.Models.EF.Employee
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Content/Login.css" rel="stylesheet" />
+</head>
+<body>
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="https://devmaster.edu.vn/images/logo.png" id="icon" alt="User Icon" />
+            </div>
+            <!-- Login Form -->
+            <form action="/Authentication/Index" method="post">
+                @Html.AntiForgeryToken()
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control fadeIn second", @placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control fadeIn third", @placeholder = "Password", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+            <p>@ViewBag.Message</p>
+            <!-- Remind Passowrd -->
+            @*<div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
+                </div>*@
+        </div>
+    </div>
+</body>
+</html>
