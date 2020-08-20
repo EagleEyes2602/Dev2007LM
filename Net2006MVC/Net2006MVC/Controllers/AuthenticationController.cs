@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Net2006MVC.Utilities;
 
 namespace Net2006MVC.Controllers
 {
@@ -21,11 +22,12 @@ namespace Net2006MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                Employee emp = db.Employee.Where(x => x.Email == employee.Email && x.Password == employee.Password).FirstOrDefault();
+                string hashedPassword = Encription.ComputeSha256Hash(employee.Password);
+                Employee emp = db.Employee.Where(x => x.Email == employee.Email && x.Password == hashedPassword).FirstOrDefault();
                 if (emp != null)
                 {
                     Session["Employee"] = emp;
-                    RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             ViewBag.Message = "Email hoặc password không khớp !!!";
