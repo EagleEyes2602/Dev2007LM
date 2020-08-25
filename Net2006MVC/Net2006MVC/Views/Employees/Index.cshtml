@@ -6,7 +6,8 @@
 }
 
 <h2>Index</h2>
-
+<button onclick="CallBack(1);">ClickMe Plzzz!!!</button>
+<p>Total Record: <span id="total-record">0</span></p>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -93,3 +94,25 @@
 </table>
 
 @Html.Action("ChangePassword", "Employees")
+
+<script>
+    function CallBack(record) {
+        $.ajax({
+            url: '/Home/TestAjax',
+            type: 'POST',
+            //dataType: 'json',
+            data: { recordNumber: record },
+          })
+            .done(function (res) {
+                $('#total-record').text(res.empLst.length);
+            console.log("success");
+          })
+        .fail(function (res) {
+            console.log(res);
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+        });
+    }
+</script>

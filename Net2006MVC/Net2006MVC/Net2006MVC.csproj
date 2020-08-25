@@ -199,6 +199,7 @@
     <Compile Include="Models\EF\SystemConfigParameter.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\MetaData\ChangePassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Encription.cs" />

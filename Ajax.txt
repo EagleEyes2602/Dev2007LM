@@ -1,0 +1,19 @@
+Ajax - Callback -> gọi lại > hàm
+Dựa trên các listener (event): click, dbclick.....
+
+- Url: địa chỉ server (action)
+- Type: (method) mặc định GET - phải trùng với method của action
+- DataType: (kiểu dữ liệu trả về) mặc định json - ngoài ra hay dùng cả Html
+- data: object dữ liệu
+
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+- Done: Được gọi khi ajax thành công
+- Fail được gọi khi ajax lỗi
+	+ Lỗi phía server: 5xx
+	+ Lỗi phía client: 4xx
+- Always: Luôn được gọi cho từng request
+
+object
+scalar variable: string, number, boolean
+{}
