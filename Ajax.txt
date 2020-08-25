@@ -17,3 +17,8 @@ https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 object
 scalar variable: string, number, boolean
 {}
+
+
+CKEditor
+
+CKFinder

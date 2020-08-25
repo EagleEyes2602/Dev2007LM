@@ -67,6 +67,7 @@ namespace Net2006MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,Code,FirstName,LastName,Email,Password,Phone,Gender,DOB,CreatedTime,UpdatedTime,CreatedBy,UpdatedBy,Notes,Status")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -103,6 +104,7 @@ namespace Net2006MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Code,FirstName,LastName,Email,Password,Phone,Gender,DOB,CreatedTime,UpdatedTime,CreatedBy,UpdatedBy,Notes,Status")] Employee employee)
         {
             if (ModelState.IsValid)
