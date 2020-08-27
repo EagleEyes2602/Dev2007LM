@@ -82,3 +82,5 @@ D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.dll
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.SqlServer.dll
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.xml
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.SqlServer.xml
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\CKFinder.dll
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\CKFinder.pdb
