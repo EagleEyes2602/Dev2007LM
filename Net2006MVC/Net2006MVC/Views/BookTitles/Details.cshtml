@@ -1,0 +1,155 @@
+﻿@model Net2006MVC.Models.EF.BookTitle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookTitle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookType.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookType.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publisher.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee1.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee1.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Releaser.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Releaser.Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

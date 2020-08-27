@@ -139,9 +139,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookTitlesController.cs" />
+    <Compile Include="Controllers\BookTypesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublishersController.cs" />
     <Compile Include="Controllers\ReleasersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1279,6 +1283,26 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\ChangePassword.cshtml" />
+    <Content Include="Views\Authors\Create.cshtml" />
+    <Content Include="Views\Authors\Delete.cshtml" />
+    <Content Include="Views\Authors\Details.cshtml" />
+    <Content Include="Views\Authors\Edit.cshtml" />
+    <Content Include="Views\Authors\Index.cshtml" />
+    <Content Include="Views\Publishers\Create.cshtml" />
+    <Content Include="Views\Publishers\Delete.cshtml" />
+    <Content Include="Views\Publishers\Details.cshtml" />
+    <Content Include="Views\Publishers\Edit.cshtml" />
+    <Content Include="Views\Publishers\Index.cshtml" />
+    <Content Include="Views\BookTypes\Create.cshtml" />
+    <Content Include="Views\BookTypes\Delete.cshtml" />
+    <Content Include="Views\BookTypes\Details.cshtml" />
+    <Content Include="Views\BookTypes\Edit.cshtml" />
+    <Content Include="Views\BookTypes\Index.cshtml" />
+    <Content Include="Views\BookTitles\Create.cshtml" />
+    <Content Include="Views\BookTitles\Delete.cshtml" />
+    <Content Include="Views\BookTitles\Details.cshtml" />
+    <Content Include="Views\BookTitles\Edit.cshtml" />
+    <Content Include="Views\BookTitles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
