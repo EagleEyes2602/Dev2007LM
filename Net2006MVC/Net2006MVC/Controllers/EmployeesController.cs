@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Net2006MVC.Models;
 using Net2006MVC.Models.EF;
+using PagedList;
 
 namespace Net2006MVC.Controllers
 {
@@ -16,10 +17,10 @@ namespace Net2006MVC.Controllers
         private QuanLyThuVienDevmasterEntities db = new QuanLyThuVienDevmasterEntities();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(int pageSize = 5, int pageIndex = 1)
         {
             var employee = db.Employee;
-            return View(employee.ToList());
+            return View(employee.ToList().ToPagedList(pageIndex, pageSize));
         }
 
         public PartialViewResult ChangePassword()

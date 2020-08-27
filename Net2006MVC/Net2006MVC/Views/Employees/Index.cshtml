@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Net2006MVC.Models.EF.Employee>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Net2006MVC.Models.EF.Employee>
 
 @{
     ViewBag.Title = "Index";
@@ -14,25 +16,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Code)
+            Code
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            FirstName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            Gender
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DOB)
+            DOB
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th></th>
     </tr>
@@ -90,7 +92,7 @@
             </td>
         </tr>
     }
-
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageIndex = pageNumber }))
 </table>
 
 @Html.Action("ChangePassword", "Employees")
@@ -102,17 +104,17 @@
             type: 'POST',
             //dataType: 'json',
             data: { recordNumber: record },
-          })
+        })
             .done(function (res) {
                 $('#total-record').text(res.empLst.length);
-            console.log("success");
-          })
-        .fail(function (res) {
-            console.log(res);
-            console.log("error");
-          })
-          .always(function() {
-            console.log("complete");
-        });
+                console.log("success");
+            })
+            .fail(function (res) {
+                console.log(res);
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            });
     }
 </script>

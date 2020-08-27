@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -56,8 +57,18 @@ namespace Net2006MVC.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Code,Name,PublisherId,AuthorId,BookTypeId,ReleaserId,PublishYear,PageNo,Price,Description,Notes,Status")] BookTitle bookTitle, HttpPostedFileBase ImageUpload)
         {
-            if (ImageUpload.ContentLength > 0)
+            if (ImageUpload != null)
             {
+                // photo.jpg
+                // photo_20200827205500.jpg
+                string Rename = Path.GetFileNameWithoutExtension(ImageUpload.FileName) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(ImageUpload.FileName);
+                string path = Path.Combine(Server.MapPath("~/Content/Uploads/"), Rename);
+                ImageUpload.SaveAs(path);
+                bookTitle.Image = Rename;
+            }
+            else
+            {
+                bookTitle.Image = "No_Image_Available.jpg";
             }
             if (ModelState.IsValid)
             {

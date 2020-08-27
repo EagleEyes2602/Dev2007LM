@@ -84,3 +84,7 @@ D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.xml
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\EntityFramework.SqlServer.xml
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\CKFinder.dll
 D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\CKFinder.pdb
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\PagedList.dll
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\PagedList.Mvc.dll
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\PagedList.xml
+D:\Students\2007LM\Net2006MVC\Net2006MVC\bin\PagedList.Mvc.xml
