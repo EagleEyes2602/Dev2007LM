@@ -180,6 +180,12 @@
     <Compile Include="Models\EF\Employee.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\Employee_GetAll_Result.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\Employee_GetById_Result.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EF\Publisher.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
@@ -207,6 +213,12 @@
     <Compile Include="Models\EF\Review.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EF\sysdiagrams.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
@@ -215,6 +227,8 @@
     </Compile>
     <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\MetaData\ChangePassword.cs" />
+    <Compile Include="Models\MetaData\EmployeeMetaData.cs" />
+    <Compile Include="Models\MetaData\ReleaserMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Encription.cs" />
   </ItemGroup>
@@ -1221,8 +1235,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\EF\QuanLyThuVienDevmaster.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuanLyThuVienDevmaster.Context.cs</LastGenOutput>
       <DependentUpon>QuanLyThuVienDevmaster.edmx</DependentUpon>
+      <LastGenOutput>QuanLyThuVienDevmaster.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EF\QuanLyThuVienDevmaster.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1231,13 +1245,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\EF\QuanLyThuVienDevmaster.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLyThuVienDevmaster.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EF\QuanLyThuVienDevmaster.edmx.diagram">
-      <DependentUpon>QuanLyThuVienDevmaster.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Content\Plugins\ckfinder\userfiles\.htaccess" />
     <Content Include="Content\Plugins\ckeditor\CHANGES.md" />
@@ -1253,6 +1260,13 @@
     <Content Include="Content\Plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\Plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\Plugins\ckeditor\skins\moono-lisa\readme.md" />
+    <EntityDeploy Include="Models\EF\QuanLyThuVienDevmaster.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyThuVienDevmaster.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EF\QuanLyThuVienDevmaster.edmx.diagram">
+      <DependentUpon>QuanLyThuVienDevmaster.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
