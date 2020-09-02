@@ -1,0 +1,17 @@
+* Phân quyền
+
++ Phân quyền chức năng: Thêm/Sửa sản phẩm, Xóa sản phẩm => Controller, Action
+VD: 
+User A có quyền master (có thể truy cập mọi chức năng)
+User B quyền Staff (có thể xem sản phẩm)
+
++ Phân quyền giao diện: Menu, nút...
+User A: nút xóa sản phẩm, Thêm/Sửa sản phẩm
+User B: ẩn nút thêm/sửa/xóa sản phẩm
+
++ Phân quyền dữ liệu:
+VD: 
+User A: có thể xem dữ liệu khách hàng của toàn cty
+User B nhân viên phòng kinh doanh 01 => xem dữ liệu của phòng đó thôi
+	- Phân quyền row data
+	- Phân quyền column data
