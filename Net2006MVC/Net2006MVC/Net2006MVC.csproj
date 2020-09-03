@@ -153,6 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PublishersController.cs" />
     <Compile Include="Controllers\ReleasersController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,11 +248,70 @@
     <Compile Include="Models\MetaData\ChangePassword.cs" />
     <Compile Include="Models\MetaData\EmployeeMetaData.cs" />
     <Compile Include="Models\MetaData\ReleaserMetaData.cs" />
+    <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Encription.cs" />
     <Compile Include="Utilities\Security.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assest\css\animate.css" />
+    <Content Include="Assest\css\bootstrap.min.css" />
+    <Content Include="Assest\css\flaticon.css" />
+    <Content Include="Assest\css\font-awesome.min.css" />
+    <Content Include="Assest\css\jquery-ui.min.css" />
+    <Content Include="Assest\css\owl.carousel.min.css" />
+    <Content Include="Assest\css\slicknav.min.css" />
+    <Content Include="Assest\css\style.css" />
+    <Content Include="Assest\icon-fonts\Flaticon.svg" />
+    <Content Include="Assest\icon-fonts\fontawesome-webfont.svg" />
+    <Content Include="Assest\img\arrow-down.png" />
+    <Content Include="Assest\img\arrow-up.png" />
+    <Content Include="Assest\img\banner-bg.jpg" />
+    <Content Include="Assest\img\bg-2.jpg" />
+    <Content Include="Assest\img\bg.jpg" />
+    <Content Include="Assest\img\blog-thumbs\1.jpg" />
+    <Content Include="Assest\img\blog-thumbs\2.jpg" />
+    <Content Include="Assest\img\cards.png" />
+    <Content Include="Assest\img\cart\1.jpg" />
+    <Content Include="Assest\img\cart\2.jpg" />
+    <Content Include="Assest\img\cart\3.jpg" />
+    <Content Include="Assest\img\favicon.ico" />
+    <Content Include="Assest\img\icons\1.png" />
+    <Content Include="Assest\img\icons\2.png" />
+    <Content Include="Assest\img\icons\3.png" />
+    <Content Include="Assest\img\logo-light.png" />
+    <Content Include="Assest\img\logo.png" />
+    <Content Include="Assest\img\mastercart.png" />
+    <Content Include="Assest\img\paypal.png" />
+    <Content Include="Assest\img\product\1.jpg" />
+    <Content Include="Assest\img\product\10.jpg" />
+    <Content Include="Assest\img\product\11.jpg" />
+    <Content Include="Assest\img\product\12.jpg" />
+    <Content Include="Assest\img\product\2.jpg" />
+    <Content Include="Assest\img\product\3.jpg" />
+    <Content Include="Assest\img\product\4.jpg" />
+    <Content Include="Assest\img\product\5.jpg" />
+    <Content Include="Assest\img\product\6.jpg" />
+    <Content Include="Assest\img\product\7.jpg" />
+    <Content Include="Assest\img\product\8.jpg" />
+    <Content Include="Assest\img\product\9.jpg" />
+    <Content Include="Assest\img\single-product\1.jpg" />
+    <Content Include="Assest\img\single-product\2.jpg" />
+    <Content Include="Assest\img\single-product\3.jpg" />
+    <Content Include="Assest\img\single-product\4.jpg" />
+    <Content Include="Assest\img\single-product\thumb-1.jpg" />
+    <Content Include="Assest\img\single-product\thumb-2.jpg" />
+    <Content Include="Assest\img\single-product\thumb-3.jpg" />
+    <Content Include="Assest\img\single-product\thumb-4.jpg" />
+    <Content Include="Assest\js\bootstrap.min.js" />
+    <Content Include="Assest\js\jquery-3.2.1.min.js" />
+    <Content Include="Assest\js\jquery-ui.min.js" />
+    <Content Include="Assest\js\jquery.nicescroll.min.js" />
+    <Content Include="Assest\js\jquery.slicknav.min.js" />
+    <Content Include="Assest\js\jquery.zoom.min.js" />
+    <Content Include="Assest\js\main.js" />
+    <Content Include="Assest\js\map.js" />
+    <Content Include="Assest\js\owl.carousel.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1286,6 +1346,12 @@
     <Content Include="Models\EF\QuanLyThuVienDevmaster.edmx.diagram">
       <DependentUpon>QuanLyThuVienDevmaster.edmx</DependentUpon>
     </Content>
+    <Content Include="Assest\icon-fonts\Flaticon.eot" />
+    <Content Include="Assest\icon-fonts\Flaticon.ttf" />
+    <Content Include="Assest\icon-fonts\Flaticon.woff" />
+    <Content Include="Assest\icon-fonts\fontawesome-webfont.eot" />
+    <Content Include="Assest\icon-fonts\fontawesome-webfont.woff" />
+    <Content Include="Assest\icon-fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1344,11 +1410,13 @@
     <Content Include="Views\BookTitles\Edit.cshtml" />
     <Content Include="Views\BookTitles\Index.cshtml" />
     <Content Include="Views\Authentication\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_ShopLayout.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shared\_ProductItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Uploads\Photo\" />
-    <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
