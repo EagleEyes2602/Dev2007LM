@@ -180,10 +180,22 @@
     <Compile Include="Models\EF\Employee.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\EmployeeRole.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EF\Employee_GetAll_Result.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\Employee_GetById_Result.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\Menu.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\MenuPermission.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\Permission.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\Publisher.cs">
@@ -213,6 +225,12 @@
     <Compile Include="Models\EF\Review.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\Role.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\RolePermission.cs">
+      <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EF\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>QuanLyThuVienDevmaster.tt</DependentUpon>
     </Compile>
@@ -231,6 +249,7 @@
     <Compile Include="Models\MetaData\ReleaserMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Encription.cs" />
+    <Compile Include="Utilities\Security.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1324,6 +1343,7 @@
     <Content Include="Views\BookTitles\Details.cshtml" />
     <Content Include="Views\BookTitles\Edit.cshtml" />
     <Content Include="Views\BookTitles\Index.cshtml" />
+    <Content Include="Views\Authentication\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

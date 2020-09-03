@@ -38,13 +38,13 @@ create table EmployeeRole (
 GO
 
 insert into Menu values 
- (N'Releaser')
-,(N'Book')
-,(N'Author')
-,(N'BookType')
-,(N'Publisher')
-,(N'Reader')
-,(N'BookTitle')
+ (N'Releasers')
+,(N'Books')
+,(N'Authors')
+,(N'BookTypes')
+,(N'Publishers')
+,(N'Readers')
+,(N'BookTitles')
 GO
 
 insert into Permission values 

@@ -35,10 +35,16 @@ namespace Net2006MVC.Models.EF
         public virtual DbSet<BookTitle> BookTitle { get; set; }
         public virtual DbSet<BookType> BookType { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<EmployeeRole> EmployeeRole { get; set; }
+        public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<MenuPermission> MenuPermission { get; set; }
+        public virtual DbSet<Permission> Permission { get; set; }
         public virtual DbSet<Publisher> Publisher { get; set; }
         public virtual DbSet<Reader> Reader { get; set; }
         public virtual DbSet<Releaser> Releaser { get; set; }
         public virtual DbSet<Review> Review { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<RolePermission> RolePermission { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<SystemConfigParameter> SystemConfigParameter { get; set; }
     

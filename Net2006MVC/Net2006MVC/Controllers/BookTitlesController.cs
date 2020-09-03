@@ -11,7 +11,7 @@ using Net2006MVC.Models.EF;
 
 namespace Net2006MVC.Controllers
 {
-    public class BookTitlesController : Controller
+    public class BookTitlesController : BaseController
     {
         private QuanLyThuVienDevmasterEntities db = new QuanLyThuVienDevmasterEntities();
 

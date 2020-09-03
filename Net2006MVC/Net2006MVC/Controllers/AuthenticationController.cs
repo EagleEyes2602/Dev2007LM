@@ -33,5 +33,10 @@ namespace Net2006MVC.Controllers
             ViewBag.Message = "Email hoặc password không khớp !!!";
             return View();
         }
+        
+        public ActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

@@ -10,7 +10,7 @@ using Net2006MVC.Models.EF;
 
 namespace Net2006MVC.Controllers
 {
-    public class PublishersController : Controller
+    public class PublishersController : BaseController
     {
         private QuanLyThuVienDevmasterEntities db = new QuanLyThuVienDevmasterEntities();
 

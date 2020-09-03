@@ -23,6 +23,7 @@ namespace Net2006MVC.Models.EF
             this.BookTitle1 = new HashSet<BookTitle>();
             this.Employee1 = new HashSet<Employee>();
             this.Employee11 = new HashSet<Employee>();
+            this.EmployeeRole = new HashSet<EmployeeRole>();
             this.Reader = new HashSet<Reader>();
             this.Reader1 = new HashSet<Reader>();
         }
@@ -57,6 +58,8 @@ namespace Net2006MVC.Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee11 { get; set; }
         public virtual Employee Employee3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeRole> EmployeeRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reader> Reader { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -119,6 +119,36 @@
     <Property Name="Notes" Type="ntext" />
     <Property Name="Status" Type="tinyint" />
   </EntityType>
+  <EntityType Name="EmployeeRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MenuPermission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuId" Type="int" />
+    <Property Name="PermissionId" Type="int" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="Publisher">
     <Key>
       <PropertyRef Name="Id" />
@@ -169,6 +199,21 @@
     <Property Name="BookTitleId" Type="int" Nullable="false" />
     <Property Name="Point" Type="tinyint" />
     <Property Name="CreatedTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuPermissionId" Type="int" />
+    <Property Name="RoleId" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -347,6 +392,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__EmployeeR__Emplo__4A8310C6">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="EmployeeRole" Type="Self.EmployeeRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeRole">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmployeeR__RoleI__498EEC8D">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="EmployeeRole" Type="Self.EmployeeRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MenuPermi__MenuI__40058253">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="MenuPermission" Type="Self.MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MenuPermi__Permi__40F9A68C">
+    <End Role="Permission" Type="Self.Permission" Multiplicity="0..1" />
+    <End Role="MenuPermission" Type="Self.MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="PermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Reader__CreatedB__4AB81AF0">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
@@ -392,6 +485,30 @@
       </Principal>
       <Dependent Role="Review">
         <PropertyRef Name="ReaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePermi__MenuP__45BE5BA9">
+    <End Role="MenuPermission" Type="Self.MenuPermission" Multiplicity="0..1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuPermission">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="MenuPermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePermi__RoleI__46B27FE2">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -476,10 +593,16 @@
     <EntitySet Name="BookTitle" EntityType="Self.BookTitle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookType" EntityType="Self.BookType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeRole" EntityType="Self.EmployeeRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuPermission" EntityType="Self.MenuPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Releaser" EntityType="Self.Releaser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePermission" EntityType="Self.RolePermission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemConfigParameter" EntityType="Self.SystemConfigParameter" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Book__BookTitleI__5812160E" Association="Self.FK__Book__BookTitleI__5812160E">
@@ -534,6 +657,22 @@
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Employee1" EntitySet="Employee" />
     </AssociationSet>
+    <AssociationSet Name="FK__EmployeeR__Emplo__4A8310C6" Association="Self.FK__EmployeeR__Emplo__4A8310C6">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeRole" EntitySet="EmployeeRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmployeeR__RoleI__498EEC8D" Association="Self.FK__EmployeeR__RoleI__498EEC8D">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="EmployeeRole" EntitySet="EmployeeRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MenuPermi__MenuI__40058253" Association="Self.FK__MenuPermi__MenuI__40058253">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="MenuPermission" EntitySet="MenuPermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MenuPermi__Permi__40F9A68C" Association="Self.FK__MenuPermi__Permi__40F9A68C">
+      <End Role="Permission" EntitySet="Permission" />
+      <End Role="MenuPermission" EntitySet="MenuPermission" />
+    </AssociationSet>
     <AssociationSet Name="FK__Reader__CreatedB__4AB81AF0" Association="Self.FK__Reader__CreatedB__4AB81AF0">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Reader" EntitySet="Reader" />
@@ -549,6 +688,14 @@
     <AssociationSet Name="FK__Review__ReaderId__5FB337D6" Association="Self.FK__Review__ReaderId__5FB337D6">
       <End Role="Reader" EntitySet="Reader" />
       <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePermi__MenuP__45BE5BA9" Association="Self.FK__RolePermi__MenuP__45BE5BA9">
+      <End Role="MenuPermission" EntitySet="MenuPermission" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePermi__RoleI__46B27FE2" Association="Self.FK__RolePermi__RoleI__46B27FE2">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
     </AssociationSet>
     <AssociationSet Name="FK_Book_BookLocation" Association="Self.FK_Book_BookLocation">
       <End Role="BookLocation" EntitySet="BookLocation" />
